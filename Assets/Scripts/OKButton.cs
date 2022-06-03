@@ -11,10 +11,10 @@ public class OKButton : MonoBehaviour
     [SerializeField] public TextMeshProUGUI inputText;
     public void OnClickOk()
     {
-       // if (MenuHanddler.Instance != null)
-        
-            SceneManager.LoadScene(2);
-           
+        // if (MenuHanddler.Instance != null)
+
+        SceneManager.LoadScene(2);
+    
              ScoreManager.ScoreInstance.currentName = inputText.text;
         Debug.Log("clickedok"+ ScoreManager.ScoreInstance.currentName);
 

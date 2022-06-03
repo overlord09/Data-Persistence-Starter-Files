@@ -89,6 +89,7 @@ public class MainManager : MonoBehaviour
             } 
             if(Input.GetKeyDown(KeyCode.Escape))
         {
+             
             SceneManager.LoadScene(0);
         }
         }
@@ -116,7 +117,7 @@ public class MainManager : MonoBehaviour
         if(ScoreManager.ScoreInstance!= null)
         {
             ScoreManager.ScoreInstance.GetBestScore(m_Points,lastScore);
-            bestScore.text="Best Score:"+ ScoreManager.ScoreInstance.playerName +": "+ ScoreManager.ScoreInstance.GetBestScore(m_Points, ScoreManager.ScoreInstance.score);
+            bestScore.text="Best Score:"+ ScoreManager.ScoreInstance.playerName +": "+ ScoreManager.ScoreInstance.GetBestScore(m_Points, ScoreManager.ScoreInstance.GetBestScore(m_Points,ScoreManager.ScoreInstance.score));
 
         }
     }
