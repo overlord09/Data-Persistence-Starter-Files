@@ -7,26 +7,17 @@ using UnityEngine.SceneManagement;
 public class OKButton : MonoBehaviour
 {
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+   
     [SerializeField] public TextMeshProUGUI inputText;
     public void OnClickOk()
     {
-        if (MenuHanddler.Instance != null)
-        {
-
-            MenuHanddler.Instance.name = inputText.text;
+       // if (MenuHanddler.Instance != null)
+        
             SceneManager.LoadScene(2);
-        }
+           
+             ScoreManager.ScoreInstance.currentName = inputText.text;
+        Debug.Log("clickedok"+ ScoreManager.ScoreInstance.currentName);
+
     }
     public void BackToMenu()
     {

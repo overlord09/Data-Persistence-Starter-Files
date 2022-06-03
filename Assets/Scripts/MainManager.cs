@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class MainManager : MonoBehaviour
 {
+    public Text playername;
     public Text bestScore;
     public Brick BrickPrefab;
     public int LineCount = 6;
@@ -18,15 +19,28 @@ public class MainManager : MonoBehaviour
     private int m_Points;
     
     private bool m_GameOver = false;
-
-   
-   
+    private int lastScore;
 
 
+    private void Awake()
+    {
+        
+    }
+    
     // Start is called before the first frame update
     void Start()
     {
-       ;
+
+        Debug.Log("Started main");
+
+        if (ScoreManager.ScoreInstance!=null)
+        {
+            Debug.Log("Check score manager");
+ lastScore = ScoreManager.ScoreInstance.score;
+ playername.text = ScoreManager.ScoreInstance.currentName;
+       ShowBestScore();
+        }
+        
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
         
@@ -44,7 +58,7 @@ public class MainManager : MonoBehaviour
     }
 
     private void Update()
-    {
+    {  
       
         if (!m_Started)
         {
@@ -61,6 +75,14 @@ public class MainManager : MonoBehaviour
         }
         else if (m_GameOver)
         {
+            if(ScoreManager.ScoreInstance!=null)
+            {
+            ScoreManager.ScoreInstance.score=m_Points;
+
+            }
+          
+
+
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -77,16 +99,25 @@ public class MainManager : MonoBehaviour
     {
         m_Points += point;
         ScoreText.text = $"Score : {m_Points}";
+        ShowBestScore();
+
     }
 
     public void GameOver()
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
+       
+       
     }
  void ShowBestScore()
-    {
+    { 
         
-        bestScore.text = MenuHanddler.Instance.name;
+        if(ScoreManager.ScoreInstance!= null)
+        {
+            ScoreManager.ScoreInstance.GetBestScore(m_Points,lastScore);
+            bestScore.text="Best Score:"+ ScoreManager.ScoreInstance.playerName +": "+ ScoreManager.ScoreInstance.GetBestScore(m_Points, ScoreManager.ScoreInstance.score);
+
+        }
     }
 }

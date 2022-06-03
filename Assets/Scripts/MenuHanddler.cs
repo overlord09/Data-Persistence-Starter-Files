@@ -10,23 +10,11 @@ using UnityEditor;
 public class MenuHanddler : MonoBehaviour
 {
   
- public  static MenuHanddler Instance;
-   // public int score;
-    public string name;
  
-    private void Awake()
-    {
-        if (Instance != null)
-        {
-            Destroy(Instance);
-            return;
-        }
-      
-        
-            Instance = this;
-            DontDestroyOnLoad(Instance);
-        
-    }
+ 
+  
+ 
+   
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +29,15 @@ public class MenuHanddler : MonoBehaviour
     }
   public  void playGame()
     {
-        SceneManager.LoadScene(1);
+            if (ScoreManager.ScoreInstance!=null)
+        {
+
+            ScoreManager.ScoreInstance.previoustName= ScoreManager.ScoreInstance.playerName;
+            Debug.Log("Play game" + ScoreManager.ScoreInstance.previoustName);
+        }
+        
+      
+       SceneManager.LoadScene(1);
        
     }
   public  void ExitGame()
