@@ -10,6 +10,8 @@ public class ScoreManager : MonoBehaviour
    public int score;
    public string currentName;
    public  string previoustName;
+   public int bestscore;
+   public string bestplayer;
 
  
 
@@ -26,6 +28,7 @@ public class ScoreManager : MonoBehaviour
 
         ScoreInstance = this;
         DontDestroyOnLoad(gameObject);
+        LoadScore();
     }
    //compare the last score
  public   int GetBestScore(int currentScore, int lastScore )
@@ -34,15 +37,14 @@ public class ScoreManager : MonoBehaviour
         
      
         if (currentScore > lastScore)
-        {
-
+        { 
             
-
+          //  playerName 
             
-            playerName = currentName;
-            
-           
+           bestplayer= currentName;
+            bestscore= currentScore;
             ScoreResult = currentScore;
+         
         }
         
 
@@ -59,12 +61,23 @@ public class ScoreManager : MonoBehaviour
     public void SaveScore()
     {
         SaveHighScore savescore = new SaveHighScore();
-        savescore.bestPlayer = playerName;
-        savescore.bestScore = ScoreResult;
+        savescore.bestPlayer = bestplayer;
+        savescore.bestScore = bestscore;
         string json=JsonUtility.ToJson(savescore);
         File.WriteAllText(Application.persistentDataPath + "/savescore.json", json);
 
 
+    }
+    public void LoadScore()  
+    {
+     string   path =Application.persistentDataPath+"/savescore.json";
+        if(File.Exists(path))
+        {
+            string json =File.ReadAllText(path);
+            SaveHighScore loadscore = JsonUtility.FromJson<SaveHighScore>(json);
+            bestplayer = loadscore.bestPlayer;
+            bestscore=loadscore.bestScore;    
+        }
     }
 
 }

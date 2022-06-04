@@ -32,7 +32,7 @@ public class MenuHanddler : MonoBehaviour
         //get a previous name 
             if (ScoreManager.ScoreInstance!=null)
         {
-
+          
             ScoreManager.ScoreInstance.previoustName= ScoreManager.ScoreInstance.playerName;
             Debug.Log("Play game" + ScoreManager.ScoreInstance.previoustName);
         }
@@ -43,11 +43,21 @@ public class MenuHanddler : MonoBehaviour
     }
   public  void ExitGame()
     {
+        ScoreManager.ScoreInstance.SaveScore();
 #if UNITY_EDITOR
         EditorApplication.ExitPlaymode();
 #else
         Application.Quit();
 #endif
     }
-   
+   public void LoadScores()
+    {
+        ScoreManager.ScoreInstance.LoadScore();
+    }
+    public void saveScore()
+    {
+        ScoreManager.ScoreInstance.SaveScore();
+
+    }
+
 }

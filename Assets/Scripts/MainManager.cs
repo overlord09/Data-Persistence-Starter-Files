@@ -124,7 +124,8 @@ lastScore = ScoreManager.ScoreInstance.score;
         //compare and show best score
         if(ScoreManager.ScoreInstance!= null)
         {
-            bestScore.text="Best Score:"+ ScoreManager.ScoreInstance.playerName +": "+ ScoreManager.ScoreInstance.GetBestScore(m_Points,  lastScore);
+            ScoreManager.ScoreInstance.GetBestScore(m_Points, lastScore);
+            bestScore.text="Best Score:"+ ScoreManager.ScoreInstance.bestplayer +": "+ ScoreManager.ScoreInstance.bestscore;
 
         }
     }
