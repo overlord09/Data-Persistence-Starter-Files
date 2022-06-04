@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 
+using UnityEngine;
+
+using System.IO;
 public class ScoreManager : MonoBehaviour
 {
    public static ScoreManager ScoreInstance;
@@ -49,6 +48,23 @@ public class ScoreManager : MonoBehaviour
 
         return ScoreResult;
     }
-  
+    //a serializable class to save the highscore
+    [System.Serializable]
+  public class SaveHighScore
+    {
+       public string bestPlayer;
+     public   int bestScore;
+    }
+    //save the high score in a file and store it in the local drive
+    public void SaveScore()
+    {
+        SaveHighScore savescore = new SaveHighScore();
+        savescore.bestPlayer = playerName;
+        savescore.bestScore = ScoreResult;
+        string json=JsonUtility.ToJson(savescore);
+        File.WriteAllText(Application.persistentDataPath + "/savescore.json", json);
+
+
+    }
 
 }
