@@ -9,9 +9,10 @@ public class OKButton : MonoBehaviour
 
    
     [SerializeField] public TextMeshProUGUI inputText;
+    //function to use in the ok button
     public void OnClickOk()
     {
-        // if (MenuHanddler.Instance != null)
+      //load main scene and ad the inputted tex in the current name variable
 
         SceneManager.LoadScene(2);
     
@@ -19,8 +20,10 @@ public class OKButton : MonoBehaviour
         Debug.Log("clickedok"+ ScoreManager.ScoreInstance.currentName);
 
     }
+    //back to menu button function
     public void BackToMenu()
     {
+        //return to main menu
         SceneManager.LoadScene(0);
     }
 }

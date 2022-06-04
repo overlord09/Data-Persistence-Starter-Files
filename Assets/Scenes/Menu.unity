@@ -152,7 +152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c5310be485f0ad4789b3e7330f8e53e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerName: 
   score: 0
+  currentName: 
+  previoustName: 
 --- !u!4 &182489313
 Transform:
   m_ObjectHideFlags: 0
@@ -873,7 +876,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 939ac5294a411c444b998e244a847aa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
 --- !u!4 &1608900213
 Transform:
   m_ObjectHideFlags: 0
@@ -924,7 +926,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -1}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1763124166
@@ -1067,7 +1069,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -7, y: 6}
+  m_AnchoredPosition: {x: -7, y: -90}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1954168517

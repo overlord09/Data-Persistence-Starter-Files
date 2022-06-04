@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class MainManager : MonoBehaviour
 {
+    
     public Text playername;
     public Text bestScore;
     public Brick BrickPrefab;
@@ -22,23 +23,25 @@ public class MainManager : MonoBehaviour
     private int lastScore;
 
 
-    private void Awake()
-    {
-        
-    }
+   
     
     // Start is called before the first frame update
     void Start()
     {
 
         Debug.Log("Started main");
-
+        //check if score >0
         if (ScoreManager.ScoreInstance!=null)
         {
             Debug.Log("Check score manager");
- lastScore = ScoreManager.ScoreInstance.score;
+            if(ScoreManager.ScoreInstance.score>m_Points)
+            {
+                //set lastcore variable as the last score set
+lastScore = ScoreManager.ScoreInstance.score;
+            }
+ //set the playername text in the main game player name
  playername.text = ScoreManager.ScoreInstance.currentName;
-       ShowBestScore();
+      
         }
         
         const float step = 0.6f;
@@ -62,6 +65,7 @@ public class MainManager : MonoBehaviour
       
         if (!m_Started)
         {
+            ShowBestScore();
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 m_Started = true;
@@ -75,7 +79,10 @@ public class MainManager : MonoBehaviour
         }
         else if (m_GameOver)
         {
-            if(ScoreManager.ScoreInstance!=null)
+            //show the best score and set the current score to be the last score 
+               
+           
+                if(ScoreManager.ScoreInstance!=null)
             {
             ScoreManager.ScoreInstance.score=m_Points;
 
@@ -83,6 +90,7 @@ public class MainManager : MonoBehaviour
           
 
 
+                //set the game to restart with the same name or go back to menu to change
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -108,16 +116,15 @@ public class MainManager : MonoBehaviour
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
-       
+        ShowBestScore();
        
     }
  void ShowBestScore()
     { 
-        
+        //compare and show best score
         if(ScoreManager.ScoreInstance!= null)
         {
-            ScoreManager.ScoreInstance.GetBestScore(m_Points,lastScore);
-            bestScore.text="Best Score:"+ ScoreManager.ScoreInstance.playerName +": "+ ScoreManager.ScoreInstance.GetBestScore(m_Points, ScoreManager.ScoreInstance.GetBestScore(m_Points,ScoreManager.ScoreInstance.score));
+            bestScore.text="Best Score:"+ ScoreManager.ScoreInstance.playerName +": "+ ScoreManager.ScoreInstance.GetBestScore(m_Points,  lastScore);
 
         }
     }

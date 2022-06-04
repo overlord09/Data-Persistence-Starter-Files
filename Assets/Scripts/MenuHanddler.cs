@@ -29,6 +29,7 @@ public class MenuHanddler : MonoBehaviour
     }
   public  void playGame()
     {
+        //get a previous name 
             if (ScoreManager.ScoreInstance!=null)
         {
 

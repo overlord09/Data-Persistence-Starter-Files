@@ -5,20 +5,19 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-    public static ScoreManager ScoreInstance;
-
-        int ScoreResult;
-    public string playerName;
+   public static ScoreManager ScoreInstance;
+   int ScoreResult;
+   public string playerName;
    public int score;
    public string currentName;
-  public  string previoustName;
+   public  string previoustName;
 
-  public  string[][] bestPlayer= new string[0][];
+ 
 
     // Start is called before the first frame update
     private void Awake()
     {
-       
+       //dont instantiate more than once (singleton)
         if (ScoreInstance != null)
         {
             Destroy(gameObject);
@@ -29,34 +28,16 @@ public class ScoreManager : MonoBehaviour
         ScoreInstance = this;
         DontDestroyOnLoad(gameObject);
     }
-    void Start()
-    {
-        Debug.Log("score Started");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-  
+   //compare the last score
  public   int GetBestScore(int currentScore, int lastScore )
     { 
         
         
-        if (currentScore <= lastScore)
+     
+        if (currentScore > lastScore)
         {
 
-            playerName = previoustName;
-            ScoreResult = lastScore;
-            Debug.Log("Last score"+playerName);
-       
-           
-        }
-        else if (currentScore >= lastScore)
-        {
-
-            Debug.Log("Current score" + playerName);
+            
 
             
             playerName = currentName;
@@ -69,18 +50,5 @@ public class ScoreManager : MonoBehaviour
         return ScoreResult;
     }
   
- /* public  int KeepScore()
-    {
-        if(ScoreResult>bestScore)
-        {
-            bestScore = ScoreResult;
-            playerName = bestPlayer;
-        }
-        else
-        {
-            bestScore = 0;
-        }
-        return bestScore;
-    }*/
 
 }
